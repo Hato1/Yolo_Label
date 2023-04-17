@@ -264,15 +264,22 @@ QString MainWindow::get_labeling_data(QString qstrImgFile)const
 
 void MainWindow::set_label(const int labelIndex)
 {
-    bool bIndexIsOutOfRange = (labelIndex < 0 || labelIndex > m_objList.size() - 1);
+    //bool bIndexIsOutOfRange = (labelIndex < 0 || labelIndex > m_objList.size() - 1);
+    m_objIndex = labelIndex;
 
-    if(!bIndexIsOutOfRange)
+    if(labelIndex < 0)
     {
-        m_objIndex = labelIndex;
-        ui->label_image->setFocusObjectLabel(m_objIndex);
-        ui->label_image->setFocusObjectName(m_objList.at(m_objIndex));
-        ui->tableWidget_label->setCurrentCell(m_objIndex, 0);
+        m_objIndex = m_objList.size() - 1;
     }
+    if(labelIndex > m_objList.size() - 1)
+    {
+        m_objIndex = 0;
+    }
+
+    ui->label_image->setFocusObjectLabel(m_objIndex);
+    ui->label_image->setFocusObjectName(m_objList.at(m_objIndex));
+    ui->tableWidget_label->setCurrentCell(m_objIndex, 0);
+
 }
 
 void MainWindow::set_label_color(const int index, const QColor color)

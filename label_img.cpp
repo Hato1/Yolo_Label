@@ -164,7 +164,7 @@ void label_img::showImage()
     font.setBold(true);
     painter.setFont(font);
 
-    int penThick = 3;
+    int penThick = 1;
 
     QColor crossLineColor(255, 187, 0);
 
